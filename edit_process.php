@@ -3,13 +3,10 @@
 include('config.php');
 
 // Menerima data dari formulir
-$id = (int)$_GET['id'];
-// $id = $_POST['id'];
-$name = $_GET['name'];
-// $name = $_POST['name'];
-$address = $_GET['address'];
-// $address = $_POST['address'];
-$class = $_GET['class'];
+$id = $_POST['id'];
+$name = $_POST['name'];
+$address = $_POST['address'];
+$class = $_POST['class'];
 
 // Mengeksekusi query untuk memperbarui data dalam database
 $query = "UPDATE students SET name='$name', address='$address', class='$class' WHERE id='$id'";

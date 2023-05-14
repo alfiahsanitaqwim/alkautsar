@@ -7,12 +7,31 @@ if (strlen($_SESSION['id'] == 0)) {
 } else {
 
 
-    if (isset($_GET['del'])) {
-        $studentid = $_GET['id'];
-        // $action = $_GET['del'];
-        mysqli_query($con, "delete from students where id ='$studentid'");
-        $_SESSION['msg'] = "data deleted !";
+    // if (isset($_GET['del'])) {
+    //     $studentid = $_GET['id'];
+    //     // $action = $_GET['del'];
+    //     mysqli_query($con, "delete from students where id ='$studentid'");
+    //     $_SESSION['msg'] = "data deleted !";
+    // }
+
+    // manage_student.php
+
+    if (isset($_GET['del']) && $_GET['del'] == 'delete' && isset($_GET['id'])) {
+        $id = $_GET['id'];
+
+        // Lakukan operasi penghapusan berdasarkan ID yang diterima.
+        // Anda dapat menggunakan pernyataan SQL DELETE atau metode lain sesuai dengan preferensi Anda.
+
+        // Contoh:
+        $query = "DELETE FROM students WHERE id = '$id'";
+        // Eksekusi query penghapusan menggunakan metode yang sesuai, seperti mysqli_query atau PDO.
+
+        // Setelah penghapusan selesai, Anda dapat melakukan pengalihan ke halaman lain atau melakukan tindakan lain yang diperlukan.
+        // Misalnya, Anda dapat mengalihkan pengguna kembali ke halaman daftar setelah penghapusan selesai:
+        header("Location: manage_student.php");
+        exit(); // Penting untuk menghentikan eksekusi skrip setelah pengalihan header.
     }
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -63,8 +82,8 @@ if (strlen($_SESSION['id'] == 0)) {
                                                 <div>
                                                     <!-- Menambah icon dari font awesome -->
                                                     <a href="edit_student.php?id=<?php echo $row['id']; ?>" class="btn" title="Edit"><i class="fa fa-pencil"></i></a>
-
-                                                    <a href="manage-buku.php?id=<?php echo $row['id'] ?>&del=delete" title="Delete" onClick="return confirm('Are you sure you want to delete?')" class="btn"><i class="fa fa-times fa fa-white"></i></a>
+                                                    <?php echo $row['id'] ?>
+                                                    <a href="delete_process.php?id=<?php echo $row['id'] ?>" title="Delete" onClick="return confirm('Are you sure you want to delete?')" class="btn"><i class="fa fa-times fa fa-white"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

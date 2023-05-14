@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     if ($num > 0) {
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['id'] = $num['id'];
-        header("location:manage-buku.php");
+        header("location:manage_student.php");
     } else {
         $_SESSION['errmsg'] = "Invalid username or password";
     }
